@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="color-scheme" content="dark">
+    <title>DoneBell</title>
+    <link rel="stylesheet" href="popup.css">
+  </head>
+  <body>
+    <header class="header">
+      <div class="brand">
+        <span class="brand-mark">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15L6 16Z"/><path d="M10 20.5a2 2 0 0 0 4 0"/>
+          </svg>
+        </span>
+        <div>
+          <h1>DoneBell</h1>
+          <p class="subtitle">Get notified when ChatGPT finishes.</p>
+        </div>
+      </div>
+      <label class="switch" title="Notifications">
+        <input type="checkbox" id="enabled" role="switch" aria-label="Notifications">
+        <span class="track" aria-hidden="true"></span>
+      </label>
+    </header>
+
+    <div class="selection-summary" role="status" aria-live="polite" aria-atomic="true">
+      <span class="summary-mark">
+        <svg class="icon small" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 12 4 4 8-8"/></svg>
+      </span>
+      <div>
+        <p class="selection-count" id="selection-count"></p>
+        <p class="summary-description">One random sound per completion</p>
+      </div>
+    </div>
+
+    <main>
+      <div class="sound-library" id="sounds">
+        <section aria-labelledby="builtin-heading">
+          <div class="section-heading">
+            <h2 id="builtin-heading">Built-in sounds</h2>
+            <span class="section-count" id="builtin-count"></span>
+          </div>
+          <div class="list" id="builtin-sounds" role="group" aria-labelledby="builtin-heading" aria-describedby="builtin-count"></div>
+        </section>
+
+        <section class="custom-section" aria-labelledby="custom-heading">
+          <div class="section-heading">
+            <h2 id="custom-heading">Custom sounds</h2>
+            <span class="section-count" id="custom-count"></span>
+          </div>
+          <div class="list" id="custom-sounds" role="group" aria-labelledby="custom-heading" aria-describedby="custom-count" hidden></div>
+          <button type="button" class="add-sound" id="add-sound">
+            <svg class="icon small" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+            Add custom sound
+          </button>
+          <input type="file" id="file" accept=".mp3,.wav,audio/mpeg,audio/wav" multiple hidden>
+        </section>
+      </div>
+
+      <div class="settings">
+        <p class="error" id="error" role="alert" hidden></p>
+        <section aria-labelledby="volume-heading">
+          <h2 id="volume-heading">Volume</h2>
+          <div class="volume">
+            <svg class="icon" id="volume-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/>
+              <path class="waves" d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/>
+              <path class="mute" d="M16 9.5l5 5M21 9.5l-5 5"/>
+            </svg>
+            <input type="range" id="volume" min="0" max="100" step="5" aria-labelledby="volume-heading">
+            <output id="volume-value" for="volume">100%</output>
+          </div>
+        </section>
+
+        <label class="pref">
+          <span class="pref-copy">
+            <span class="pref-title">Background only</span>
+            <span class="pref-description" id="background-description">Play sounds only when the ChatGPT tab is inactive.</span>
+          </span>
+          <span class="switch">
+            <input type="checkbox" id="background-only" role="switch" aria-label="Background only" aria-describedby="background-description">
+            <span class="track" aria-hidden="true"></span>
+          </span>
+        </label>
+      </div>
+    </main>
+
+    <template id="sound-row">
+      <div class="row">
+        <label class="choice">
+          <input type="checkbox">
+          <span class="box" aria-hidden="true"></span>
+          <span class="name"></span>
+        </label>
+        <button type="button" class="icon-button play">
+          <svg class="icon small" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg>
+        </button>
+        <button type="button" class="icon-button rename" hidden>
+          <svg class="icon small" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 19.5h4l10-10a2.1 2.1 0 0 0-4-4l-10 10v4ZM13 7.5l3.5 3.5"/></svg>
+        </button>
+        <button type="button" class="icon-button danger remove" hidden>
+          <svg class="icon small" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h14M10 7V4.5h4V7M6.5 7l1 12.5h9l1-12.5M10.5 11v5M13.5 11v5"/></svg>
+        </button>
+      </div>
+    </template>
+
+    <script src="index.js"></script>
+  </body>
+</html>
