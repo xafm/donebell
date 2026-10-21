@@ -30,9 +30,7 @@ Requires Chrome 116 or newer.
 
 ## Optional Game Sounds
 
-I'm a big fan of the classic voice lines from **Warcraft III** and **Command & Conquer: Red Alert 2**.
-
-Unfortunately, I couldn't include these sounds in the public release due to copyright restrictions. You can find them on Myinstants and import them yourself:
+**Warcraft III** and **Red Alert 2** sounds are not included in the public release due to copyright restrictions. You can download them from the links below and import them into DoneBell.
 
 **Warcraft III**
 
@@ -79,5 +77,3 @@ Licensed under the [MIT License](LICENSE).
 Detection logic incorporates the [Chat Dinger](https://github.com/rumblelab/chatdinger) approach. See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 
 Third-party audio and imagery are excluded from DoneBell's MIT license.
-
-DoneBell is an independent project, not affiliated with or endorsed by OpenAI.
